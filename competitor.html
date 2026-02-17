@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Blue — Competitive Landscape</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E1117;
+    --surface: #161B22;
+    --surface-hover: #1C2129;
+    --border: #2A3038;
+    --border-light: #363E48;
+    --text: #E6EDF3;
+    --text-muted: #8B949E;
+    --text-dim: #6B737E;
+    --accent-green: #3FB950;
+    --accent-green-dim: rgba(63,185,80,0.12);
+    --accent-red: #F85149;
+    --accent-red-dim: rgba(248,81,73,0.12);
+    --accent-amber: #D29922;
+    --accent-amber-dim: rgba(210,153,34,0.12);
+    --accent-teal: #39D0D8;
+    --accent-teal-dim: rgba(57,208,216,0.10);
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .header-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 640px;
+    line-height: 1.65;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    padding: 32px 0 0;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .tab:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-light);
+    color: var(--text);
+  }
+
+  .tab.active {
+    border-color: var(--accent-teal);
+    color: var(--text);
+    background: var(--accent-teal-dim);
+  }
+
+  .tab-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tab[data-id="prosperops"] .tab-dot { background: #F7931E; }
+  .tab[data-id="cloudfix"] .tab-dot { background: #22C55E; }
+  .tab[data-id="zesty"] .tab-dot { background: #E44D93; }
+
+  .tab-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+    margin-left: 4px;
+  }
+
+  .panel {
+    display: none;
+    padding: 40px 0 60px;
+    animation: fadeUp 0.35s ease;
+  }
+
+  .panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .profile-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .profile-cell {
+    background: var(--surface);
+    padding: 20px 24px;
+  }
+
+  .profile-cell:first-child {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .profile-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .profile-tagline {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .profile-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge-threat { background: var(--accent-red-dim); color: var(--accent-red); }
+  .badge-watch { background: var(--accent-amber-dim); color: var(--accent-amber); }
+  .badge-indirect { background: var(--accent-green-dim); color: var(--accent-green); }
+
+  .cell-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .cell-value {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .cell-value strong {
+    color: var(--accent-teal);
+    font-weight: 600;
+  }
+
+  .analysis-section {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .analysis-section:hover {
+    border-color: var(--border-light);
+  }
+
+  .analysis-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    cursor: pointer;
+    background: var(--surface);
+    transition: background 0.2s;
+    user-select: none;
+  }
+
+  .analysis-header:hover {
+    background: var(--surface-hover);
+  }
+
+  .analysis-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .icon-works { background: var(--accent-green-dim); color: var(--accent-green); }
+  .icon-doesnt { background: var(--accent-red-dim); color: var(--accent-red); }
+  .icon-implication { background: var(--accent-amber-dim); color: var(--accent-amber); }
+
+  .analysis-title {
+    font-size: 15px;
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .analysis-chevron {
+    width: 20px;
+    height: 20px;
+    color: var(--text-dim);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .analysis-section.open .analysis-chevron {
+    transform: rotate(180deg);
+  }
+
+  .analysis-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .analysis-section.open .analysis-body {
+    max-height: 800px;
+  }
+
+  .analysis-content {
+    padding: 4px 24px 24px 70px;
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .analysis-content p {
+    margin-bottom: 12px;
+  }
+
+  .analysis-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .highlight {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .callout {
+    background: var(--accent-teal-dim);
+    border-left: 3px solid var(--accent-teal);
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 12px;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .matrix-section {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .matrix-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .matrix-sub {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .matrix-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .matrix-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 13.5px;
+  }
+
+  .matrix-table thead {
+    background: var(--surface);
+  }
+
+  .matrix-table th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .matrix-table th:first-child {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+
+  .matrix-table th.col-sb {
+    color: var(--accent-teal);
+  }
+
+  .matrix-table td {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .matrix-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .matrix-table td:first-child {
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .matrix-table tbody tr {
+    transition: background 0.15s;
+  }
+
+  .matrix-table tbody tr:hover {
+    background: var(--surface);
+  }
+
+  .cell-check { color: var(--accent-green); font-weight: 700; }
+  .cell-cross { color: var(--accent-red); font-weight: 700; }
+  .cell-partial { color: var(--accent-amber); font-weight: 600; }
+  .cell-strong { color: var(--text); font-weight: 500; }
+
+  .takeaway {
+    margin-top: 48px;
+    margin-bottom: 60px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+  }
+
+  .takeaway-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 14px;
+  }
+
+  .takeaway-text {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .takeaway-text strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 30px; }
+    .profile-card { grid-template-columns: 1fr; }
+    .tabs { flex-direction: column; }
+    .tab { justify-content: flex-start; }
+    .analysis-content { padding-left: 24px; }
+    .matrix-table { font-size: 12px; }
+    .matrix-table th, .matrix-table td { padding: 10px 12px; }
+    .profile-cell:first-child { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="header-label">Strategic Blue // Competitive Intelligence</div>
+    <h1>Competitive Landscape Analysis</h1>
+    <p class="header-sub">Three competitors, three positioning strategies. Each reveals a gap Strategic Blue can exploit. Click each competitor to explore what works, what doesn't, and why it matters.</p>
+
+    <div class="tabs">
+      <button class="tab active" data-id="prosperops" onclick="showPanel('prosperops')">
+        <span class="tab-dot"></span>
+        ProsperOps
+        <span class="tab-meta">// Now Flexera</span>
+      </button>
+      <button class="tab" data-id="cloudfix" onclick="showPanel('cloudfix')">
+        <span class="tab-dot"></span>
+        CloudFix / RightSpend
+        <span class="tab-meta">// Emerging</span>
+      </button>
+      <button class="tab" data-id="zesty" onclick="showPanel('zesty')">
+        <span class="tab-dot"></span>
+        Zesty
+        <span class="tab-meta">// Pivoting</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ProsperOps Panel -->
+  <div class="panel active" id="panel-prosperops">
+    <div class="profile-card">
+      <div class="profile-cell">
+        <div>
+          <div class="profile-name">ProsperOps</div>
+          <div class="profile-tagline">Autonomous discount management across AWS, Azure, and GCP. Acquired by Flexera (Thoma Bravo) on 6 January 2026. $6B annual cloud spend under management.</div>
+        </div>
+        <span class="profile-badge badge-threat">Primary threat</span>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Founded</div>
+        <div class="cell-value">2018, Austin TX</div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Pricing Model</div>
+        <div class="cell-value">% of savings generated (via AWS Marketplace)</div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Core Metric</div>
+        <div class="cell-value"><strong>Effective Savings Rate (ESR)</strong></div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Key Claim</div>
+        <div class="cell-value">Customers increase monthly savings by <strong>68%</strong> on average</div>
+      </div>
+    </div>
+
+    <div class="analysis-section open">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-works">&#10003;</div>
+        <div class="analysis-title">What Works for Them</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p><span class="highlight">Minimal onboarding friction.</span> Customers consistently describe setup taking hours, not weeks. IAM role access only, no agents, no scripts. The "set it and forget it" narrative is perfectly calibrated for CTOs who don't want another thing to manage.</p>
+          <p><span class="highlight">One metric that makes the sale.</span> Everything funnels to Effective Savings Rate. It's simple, measurable, and directly comparable. This makes evaluation and internal justification trivially easy for prospects.</p>
+          <p><span class="highlight">Aligned pricing removes objections.</span> Charging a percentage of savings means the ROI argument is self-evident. Customers frequently cite 20-22% ESR improvements net of fees. Their bill pays for itself.</p>
+          <p><span class="highlight">Multi-cloud coverage.</span> AWS, Azure, and Google Cloud in a single platform. Strategic Blue is AWS-only, which narrows the addressable market against this competitor.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-section">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-doesnt">&#10007;</div>
+        <div class="analysis-title">What Doesn't Work</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p><span class="highlight">The Flexera acquisition is a genuine vulnerability.</span> Many customers chose ProsperOps because it was independent and focused. Flexera's playbook of acquisition-then-integration is well-documented. "Continue operating under its own brand" is standard language that means nothing 18 months from now.</p>
+          <p><span class="highlight">Bundling pressure is inevitable.</span> Enterprise acquirers upsell. Customers will face pricing changes, roadmap drift toward Flexera's enterprise priorities, and pressure to adopt the broader Flexera One platform.</p>
+          <p><span class="highlight">It's a faceless SaaS product.</span> Reviews mention responsive support, but nobody talks about a named account manager who understands their business context. The relationship is transactional. When things get complex, there's no human layer to fall back on.</p>
+          <p><span class="highlight">Unrealized fee risk.</span> If a customer terminates, ProsperOps bills for up to 12 months of unrealized savings on existing commitments. This creates a quiet lock-in that isn't obvious at sign-up.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-section">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-implication">&#9670;</div>
+        <div class="analysis-title">Strategic Implication for Strategic Blue</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p>The Flexera acquisition creates a concrete switching trigger that didn't exist six weeks ago. ProsperOps customers are re-evaluating. The window to capture switching intent is roughly 6-12 months before concerns either materialise or dissipate.</p>
+          <div class="callout">The messaging opportunity isn't to attack ProsperOps directly. It's to position around what enterprise acquisition means for focused customers: "Your optimization tool just became someone else's feature."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CloudFix Panel -->
+  <div class="panel" id="panel-cloudfix">
+    <div class="profile-card">
+      <div class="profile-cell">
+        <div>
+          <div class="profile-name">CloudFix / RightSpend</div>
+          <div class="profile-tagline">Commitment Free Discounts (CFDs) for AWS EC2. Claims 40-55% savings without any lock-in through hourly rebalancing of Convertible Reserved Instances.</div>
+        </div>
+        <span class="profile-badge badge-watch">Rising contender</span>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Target Market</div>
+        <div class="cell-value">$1M+ annual EC2 spend</div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Pricing Model</div>
+        <div class="cell-value"><strong>20-25%</strong> of net new savings</div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Scope</div>
+        <div class="cell-value">AWS EC2 only (by design)</div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Key Differentiator</div>
+        <div class="cell-value"><strong>Zero commitment lock-in</strong></div>
+      </div>
+    </div>
+
+    <div class="analysis-section open">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-works">&#10003;</div>
+        <div class="analysis-title">What Works for Them</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p><span class="highlight">"No commitment" is genuinely differentiated messaging.</span> While ProsperOps and Strategic Blue both manage commitments on behalf of the customer (reducing but not eliminating lock-in), CloudFix claims to eliminate it entirely. For risk-averse CTOs, this is a compelling pitch.</p>
+          <p><span class="highlight">Aggressive competitive content marketing.</span> Their ProsperOps acquisition blog post went live within 48 hours, clearly designed to capture switching intent. They create comparison pages, checklists, and competitor-specific landing pages. They play offence.</p>
+          <p><span class="highlight">30-day free trial with guaranteed results.</span> "Measurable savings within 30 days or you pay nothing." This removes the last barrier to evaluation. Compare this to Strategic Blue's current requirement to share CUR access before prospects see any value.</p>
+          <p><span class="highlight">Transparent pricing.</span> 20-25% of net new savings, stated publicly. No negotiation needed. No hidden fees. No contract lock-in.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-section">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-doesnt">&#10007;</div>
+        <div class="analysis-title">What Doesn't Work</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p><span class="highlight">AWS-only by design.</span> This limits their addressable market as companies go multi-cloud. It's a deliberate constraint, but one that will narrow their runway over time.</p>
+          <p><span class="highlight">Structural dependence on Convertible RIs.</span> Their "commitment free" model relies on Convertible RIs, which AWS is phasing out for new instance types. This is the same structural risk that threatens Strategic Blue, but CloudFix doesn't acknowledge it in their marketing.</p>
+          <p><span class="highlight">Content quality is inconsistent.</span> Some technical specification pages read like AI-generated text with inflated metrics ("99.7% accuracy," "quantum-inspired optimization"). This undermines credibility for technical evaluators who can spot the noise.</p>
+          <p><span class="highlight">Thin customer proof.</span> Compared to ProsperOps' deep bench of Marketplace reviews and G2 ratings, CloudFix's social proof is noticeably thinner. One large case study (Ellucian) does most of the heavy lifting.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-section">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-implication">&#9670;</div>
+        <div class="analysis-title">Strategic Implication for Strategic Blue</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p>CloudFix validates that "flexibility without lock-in" resonates as a message, which is actually Strategic Blue's core value proposition. But CloudFix pursues it through a purely automated, self-serve model.</p>
+          <div class="callout">Strategic Blue's opportunity is to deliver the same outcome but with human expertise layered on. Particularly for the forecasting complexity that algorithms alone can't anticipate. The self-serve assessment tool (Campaign 1 in the strategy) should directly counter CloudFix's free trial with something that demonstrates value before asking for CUR access.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zesty Panel -->
+  <div class="panel" id="panel-zesty">
+    <div class="profile-card">
+      <div class="profile-cell">
+        <div>
+          <div class="profile-name">Zesty</div>
+          <div class="profile-tagline">Multi-layer Kubernetes optimization platform. Commitment Manager is one product within a broader infrastructure automation suite including pod rightsizing, storage scaling, and spot management.</div>
+        </div>
+        <span class="profile-badge badge-indirect">Indirect competitor</span>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Founded</div>
+        <div class="cell-value">2019, Israel (HQ San Mateo, CA)</div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Pricing Model</div>
+        <div class="cell-value">% of savings, success-based</div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Key Evolution</div>
+        <div class="cell-value">Shifted from RI management to <strong>micro-Savings Plans</strong></div>
+      </div>
+      <div class="profile-cell">
+        <div class="cell-label">Platform Play</div>
+        <div class="cell-value">K8s optimization, not pure rate optimization</div>
+      </div>
+    </div>
+
+    <div class="analysis-section open">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-works">&#10003;</div>
+        <div class="analysis-title">What Works for Them</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p><span class="highlight">"Multi-layer optimization" is compelling for engineering buyers.</span> Rather than selling rate optimization in isolation, Zesty wraps it into a stack-wide story: compute, storage, commitments, and spot instances. For engineering teams who think in systems, not financial instruments, this narrative resonates.</p>
+          <p><span class="highlight">Micro-Savings Plans approach is technically interesting.</span> Buying many small, short-duration commitments rather than large long-term ones gives flexibility similar to Strategic Blue's pooled model, but through a different mechanism. This may represent where the market is heading as convertible RIs phase out.</p>
+          <p><span class="highlight">AWS Marketplace reviews are genuinely positive.</span> Customers describe 5+ year relationships, 85-95% coverage rates, and consistently hands-off operation. Multiple reviews mention the "insurance plan" where Zesty absorbs the cost of any overcommitment mistakes.</p>
+          <p><span class="highlight">Well-funded and credentialed.</span> $75M+ raised, AWS Advanced Technology Partner status, and active presence at re:Invent. They're not going away.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-section">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-doesnt">&#10007;</div>
+        <div class="analysis-title">What Doesn't Work</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p><span class="highlight">Diluted rate optimization story.</span> By broadening into Kubernetes, Zesty has buried its commitment management product. Their homepage barely mentions it. For a prospect whose primary problem is "I'm overpaying on AWS commitments," Zesty's messaging doesn't immediately signal they solve that.</p>
+          <p><span class="highlight">Not purpose-built for rate optimization.</span> Commitment Manager is a feature within a platform, not the core product. For companies that need deep, nuanced rate optimization, a dedicated solution will always outperform a feature in a broader suite.</p>
+          <p><span class="highlight">Micro-Savings Plans depend on AWS continuing to offer short-duration instruments.</span> If AWS tightens these options (as they've shown willingness to do with RIs), Zesty's flexibility mechanism breaks.</p>
+          <p><span class="highlight">Israel HQ creates timezone friction for UK prospects.</span> Reviews note this hasn't been a major issue, but for Strategic Blue's UK-heavy target market, local presence and timezone alignment matter for the trust-building phase.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-section">
+      <div class="analysis-header" onclick="toggleSection(this)">
+        <div class="analysis-icon icon-implication">&#9670;</div>
+        <div class="analysis-title">Strategic Implication for Strategic Blue</div>
+        <svg class="analysis-chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="analysis-body">
+        <div class="analysis-content">
+          <p>Zesty represents the "platform play" direction: commitment management as a feature, not a business. This is the opposite of what Strategic Blue should do. Zesty's diluted focus actually makes them less competitive for the pure rate optimization buyer.</p>
+          <div class="callout">Zesty's micro-Savings Plans approach is worth studying as a potential evolution of Strategic Blue's pooled commitment model, particularly as convertible RIs phase out. The mechanism is different, but the principle (many small flexible commitments vs. few large rigid ones) mirrors Strategic Blue's strategic instinct.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Matrix -->
+  <div class="matrix-section">
+    <h2 class="matrix-title">Competitive Positioning Matrix</h2>
+    <p class="matrix-sub">How Strategic Blue's model compares across the dimensions that matter to target accounts.</p>
+
+    <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>ProsperOps</th>
+          <th>CloudFix</th>
+          <th>Zesty</th>
+          <th class="col-sb">Strategic Blue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Delivery Model</td>
+          <td>Fully automated SaaS</td>
+          <td>Fully automated SaaS</td>
+          <td>Automated platform</td>
+          <td class="cell-strong">Managed service + human expertise</td>
+        </tr>
+        <tr>
+          <td>Named Account Mgr</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-check">Yes</td>
+        </tr>
+        <tr>
+          <td>Onboarding Speed</td>
+          <td class="cell-check">Hours</td>
+          <td class="cell-check">Minutes (claimed)</td>
+          <td class="cell-check">Minutes</td>
+          <td class="cell-partial">Days to weeks</td>
+        </tr>
+        <tr>
+          <td>Multi-Cloud</td>
+          <td class="cell-check">AWS, Azure, GCP</td>
+          <td class="cell-cross">AWS only</td>
+          <td class="cell-partial">AWS + Azure (partial)</td>
+          <td class="cell-cross">AWS only</td>
+        </tr>
+        <tr>
+          <td>FinOps Advisory</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-check">Included</td>
+        </tr>
+        <tr>
+          <td>Convertible RI Risk</td>
+          <td class="cell-partial">Moderate</td>
+          <td class="cell-cross">High (core mechanism)</td>
+          <td class="cell-partial">Shifting to micro-SPs</td>
+          <td class="cell-cross">High (pooled model)</td>
+        </tr>
+        <tr>
+          <td>Independence</td>
+          <td class="cell-cross">Acquired by Flexera</td>
+          <td class="cell-check">Independent</td>
+          <td class="cell-check">Independent (funded)</td>
+          <td class="cell-check">Independent (bootstrapped)</td>
+        </tr>
+        <tr>
+          <td>UK Public Sector</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-cross">No</td>
+          <td class="cell-check">Yes, with reseller model</td>
+        </tr>
+        <tr>
+          <td>G2 Reviews</td>
+          <td>High Performer, 10+ reviews</td>
+          <td>Limited presence</td>
+          <td>AWS Marketplace reviews</td>
+          <td class="cell-strong">18 reviews, 5.0 stars</td>
+        </tr>
+        <tr>
+          <td>Free Assessment</td>
+          <td class="cell-check">Free demo + savings estimate</td>
+          <td class="cell-check">Free 30-day trial</td>
+          <td class="cell-check">Instant onboard</td>
+          <td class="cell-partial">Savings Portal (requires CUR)</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Takeaway -->
+  <div class="takeaway">
+    <div class="takeaway-label">The White Space</div>
+    <p class="takeaway-text">
+      Every competitor leads with <strong>automation</strong> and <strong>minimal onboarding</strong>. None of them lead with human expertise or personal relationships. That's the structural gap Strategic Blue occupies. But in a market where every competitor offers a free trial, instant setup, and transparent pricing, the current requirement to share CUR access before seeing any value is a significant friction point. <strong>The self-serve assessment tool and the ReFocus forecasting pivot aren't just nice-to-haves. They're how Strategic Blue matches the low-friction entry point competitors already offer, while retaining the high-touch service model that none of them can replicate.</strong>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+    document.getElementById('panel-' + id).classList.add('active');
+    document.querySelector('.tab[data-id="' + id + '"]').classList.add('active');
+  }
+
+  function toggleSection(header) {
+    var section = header.parentElement;
+    section.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
