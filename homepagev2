@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Blue Homepage Wireframe v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111111;
+    --dark: #2A2A2A;
+    --mid: #5A5A5A;
+    --muted: #888888;
+    --border: #CCCCCC;
+    --border-light: #E0E0E0;
+    --bg-page: #F0F0F0;
+    --bg-section: #FFFFFF;
+    --bg-section-alt: #F7F7F7;
+    --bg-placeholder: #E8E8E8;
+    --bg-placeholder-dark: #D4D4D4;
+    --font: 'DM Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg-page);
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .annotation-bar {
+    background: var(--dark);
+    padding: 10px 64px;
+    font-size: 12px;
+    color: #AAAAAA;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .annotation-bar strong { color: #FFFFFF; }
+
+  .img-placeholder {
+    background: var(--bg-placeholder);
+    border: 1.5px dashed var(--border);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    gap: 8px;
+    text-align: center;
+    padding: 16px;
+  }
+  .img-placeholder span.sub {
+    font-size: 10px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .btn-primary {
+    background: var(--dark);
+    color: #FFFFFF;
+    border: none;
+    padding: 13px 26px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: var(--font);
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--dark);
+    border: 1.5px solid var(--border);
+    padding: 12px 26px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: var(--font);
+    font-weight: 400;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--mid);
+    border: 1px solid var(--border);
+    padding: 8px 18px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: var(--font);
+    cursor: pointer;
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--dark);
+    border: 1.5px solid var(--border);
+    padding: 11px 22px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: var(--font);
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--bg-section);
+    border-bottom: 1px solid var(--border-light);
+    padding: 18px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { font-size: 16px; font-weight: 700; color: var(--black); }
+  .nav-links { list-style: none; display: flex; gap: 32px; }
+  .nav-links li a { text-decoration: none; font-size: 14px; color: var(--mid); }
+  .nav-ctas { display: flex; gap: 10px; align-items: center; }
+
+  /* ── HERO ── */
+  .hero { background: var(--bg-section); padding: 88px 64px 80px; }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .hero-headline {
+    font-size: 50px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 22px;
+  }
+  .hero-subhead {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--mid);
+    margin-bottom: 16px;
+    max-width: 480px;
+  }
+  .hero-pricing-line {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    padding: 10px 14px;
+    background: var(--bg-section-alt);
+    border-left: 2px solid var(--bg-placeholder-dark);
+    border-radius: 0 4px 4px 0;
+    max-width: 480px;
+  }
+  .hero-pricing-line strong { color: var(--dark); font-weight: 600; }
+  .hero-ctas { display: flex; gap: 12px; margin-bottom: 16px; align-items: center; }
+  .hero-qualification {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .hero-proof-strip {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-light);
+  }
+  .proof-divider { width: 1px; height: 32px; background: var(--border-light); }
+  .proof-item-stat { font-size: 20px; font-weight: 700; color: var(--black); }
+  .proof-item-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ── LOGO BAR ── */
+  .logo-bar {
+    background: var(--bg-section-alt);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    padding: 28px 64px;
+  }
+  .logo-bar-inner { max-width: 1200px; margin: 0 auto; }
+  .logo-bar-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .logo-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .logo-slot {
+    background: var(--bg-placeholder);
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    width: 120px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .logo-bar-footer { text-align: center; font-size: 13px; color: var(--mid); }
+  .logo-bar-footer strong { color: var(--dark); font-weight: 600; }
+
+  /* ── STEPS ── */
+  .steps-section { background: var(--bg-section); padding: 80px 64px; }
+  .steps-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 56px; }
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-light);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .step-card { background: var(--bg-section); padding: 40px 32px; }
+  .step-num {
+    font-size: 60px;
+    font-weight: 700;
+    color: var(--bg-placeholder);
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.03em;
+  }
+  .step-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 3px 12px;
+    margin-bottom: 16px;
+  }
+  .step-title { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 12px; }
+  .step-body { font-size: 14px; color: var(--mid); line-height: 1.7; }
+  .step-footnote {
+    margin-top: 16px;
+    padding: 10px 14px;
+    background: var(--bg-section-alt);
+    border-left: 2px solid var(--bg-placeholder-dark);
+    border-radius: 0 4px 4px 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── PRODUCT SPLIT ── */
+  .products-section {
+    background: var(--bg-section-alt);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    padding: 80px 64px;
+  }
+  .products-inner { max-width: 1200px; margin: 0 auto; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .product-card {
+    background: var(--bg-section);
+    border: 1.5px solid var(--border-light);
+    border-radius: 10px;
+    padding: 40px 36px;
+  }
+  .product-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    display: inline-block;
+    padding: 3px 12px;
+    margin-bottom: 20px;
+  }
+  .product-name {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .product-for {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+  .product-body {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .product-bullets { margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .product-bullet { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--dark); }
+  .product-bullet-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--bg-placeholder-dark);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  /* ── SECURITY ── */
+  .security-section { background: var(--bg-section); padding: 80px 64px; }
+  .security-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .security-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .security-card {
+    background: var(--bg-section-alt);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px 20px;
+  }
+  .security-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+  .security-card-body { font-size: 13px; color: var(--mid); line-height: 1.6; }
+  .security-certs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .security-cert {
+    background: var(--bg-placeholder);
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ── PATHS ── */
+  .path-section { background: var(--bg-section-alt); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 80px 64px; }
+  .path-inner { max-width: 1200px; margin: 0 auto; }
+  .path-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .path-card {
+    background: var(--bg-section);
+    border: 1.5px solid var(--border-light);
+    border-radius: 8px;
+    padding: 32px 28px;
+  }
+  .path-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-placeholder);
+    border-radius: 8px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .path-title { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+  .path-body { font-size: 13px; color: var(--mid); line-height: 1.65; margin-bottom: 18px; }
+  .path-link { font-size: 13px; font-weight: 600; color: var(--dark); }
+
+  /* ── CASE STUDY ── */
+  .cs-section {
+    background: var(--bg-section);
+    padding: 80px 64px;
+  }
+  .cs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .cs-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .cs-headline {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+  .cs-bullets { margin-bottom: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .cs-bullet { display: flex; gap: 16px; align-items: flex-start; }
+  .cs-bullet-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 130px;
+    padding-top: 3px;
+  }
+  .cs-bullet-value { font-size: 14px; color: var(--dark); line-height: 1.55; }
+  .cs-quote {
+    padding: 18px 20px;
+    background: var(--bg-placeholder);
+    border-left: 3px solid var(--bg-placeholder-dark);
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.65;
+    font-style: italic;
+  }
+  .cs-quote-attr {
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ── CALCULATOR ── */
+  .calc-section {
+    background: var(--bg-section-alt);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    padding: 80px 64px;
+  }
+  .calc-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+  .calc-box {
+    background: var(--bg-section);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 40px;
+    margin-top: 40px;
+    text-align: left;
+  }
+  .calc-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .calc-field {
+    background: var(--bg-placeholder);
+    border: 1px dashed var(--border);
+    border-radius: 5px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .calc-submit {
+    width: 100%;
+    background: var(--dark);
+    color: #FFF;
+    border: none;
+    padding: 15px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: var(--font);
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  .calc-microcopy { font-size: 12px; color: var(--muted); text-align: center; }
+  .calc-output {
+    margin-top: 24px;
+    background: var(--bg-section-alt);
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+  }
+  .calc-next-steps {
+    margin-top: 24px;
+    border-top: 1px solid var(--border-light);
+    padding-top: 24px;
+  }
+  .calc-next-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .calc-steps-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .calc-step {
+    background: var(--bg-section-alt);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 16px;
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .calc-step-num {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bg-placeholder-dark);
+    margin-bottom: 6px;
+  }
+  .calc-step-title { font-weight: 700; color: var(--dark); margin-bottom: 4px; font-size: 13px; }
+
+  /* ── RESOURCES ── */
+  .resources-section { background: var(--bg-section); padding: 80px 64px; }
+  .resources-inner { max-width: 1200px; margin: 0 auto; }
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 48px;
+  }
+  .resource-card {
+    background: var(--bg-section);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .resource-img { width: 100%; height: 130px; }
+  .resource-body { padding: 20px; }
+  .resource-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .resource-title { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.4; margin-bottom: 10px; }
+  .resource-link { font-size: 13px; color: var(--mid); }
+
+  .lead-magnet {
+    grid-column: span 3;
+    background: var(--bg-section-alt);
+    border: 1.5px dashed var(--border);
+    border-radius: 8px;
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .lead-title { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .lead-body { font-size: 13px; color: var(--mid); }
+  .lead-form { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+  .lead-input {
+    background: var(--bg-placeholder);
+    border: 1px dashed var(--border);
+    border-radius: 5px;
+    height: 44px;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    font-family: var(--font);
+  }
+  .lead-btn {
+    background: var(--dark);
+    color: #FFF;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--font);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg-section-alt);
+    border-top: 1px solid var(--border-light);
+    padding: 36px 64px;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-note { font-size: 12px; color: var(--muted); }
+  .footer-certs { display: flex; gap: 12px; }
+  .cert-slot {
+    background: var(--bg-placeholder);
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    width: 64px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+
+  svg.icon {
+    width: 16px; height: 16px;
+    stroke: var(--muted);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  svg.icon-lg {
+    width: 22px; height: 22px;
+    stroke: var(--muted);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>
+</head>
+<body>
+
+<div class="annotation-bar">
+  <strong>Wireframe v2</strong> · Strategic Blue Homepage Redesign · Forecasting-led proposition · February 2026
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Strategic Blue</div>
+  <ul class="nav-links">
+    <li><a href="#">Solution</a></li>
+    <li><a href="#">Who it's for</a></li>
+    <li><a href="#">How it works</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-ctas">
+    <button class="btn-ghost">Portal</button>
+    <button class="btn-primary">Get a savings forecast</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">AWS Cost Forecasting &amp; Optimisation</p>
+      <h1 class="hero-headline">Finally know what your AWS will cost. And pay less for it.</h1>
+      <p class="hero-subhead">Strategic Blue gives finance and engineering teams accurate, automated cloud spend forecasting alongside savings of up to 45%.</p>
+      <div class="hero-pricing-line"><strong>Our fee comes from your savings, not your budget.</strong> If you don't save, you don't pay.</div>
+      <div class="hero-ctas">
+        <button class="btn-primary">Get a savings forecast</button>
+        <button class="btn-secondary">See how it works</button>
+      </div>
+      <p class="hero-qualification">Built for organisations spending $50k+ per month on AWS.</p>
+      <div class="hero-proof-strip">
+        <div>
+          <div class="proof-item-stat">Up to 45%</div>
+          <div class="proof-item-label">AWS bill reduction</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div>
+          <div class="proof-item-stat">95%</div>
+          <div class="proof-item-label">Long-term customer retention</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div>
+          <div class="proof-item-stat">Since 2010</div>
+          <div class="proof-item-label">Original cloud FinOps company</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="img-placeholder" style="height:460px;">
+        <svg class="icon-lg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Forecasting dashboard screenshot</span>
+        <span class="sub">Suggested: spend forecast graph showing projected vs. actual, with savings overlay</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGO BAR -->
+<div class="logo-bar">
+  <div class="logo-bar-inner">
+    <p class="logo-bar-label">Trusted by digital innovators since 2010</p>
+    <div class="logo-row">
+      <div class="logo-slot">Dojo</div>
+      <div class="logo-slot">UCSD</div>
+      <div class="logo-slot">Form3</div>
+      <div class="logo-slot">Verato</div>
+      <div class="logo-slot">SnapLogic</div>
+      <div class="logo-slot">Peterborough</div>
+    </div>
+    <p class="logo-bar-footer"><strong>95% of our customers stay with us for the long term.</strong> &nbsp;·&nbsp; AWS Partner &nbsp;·&nbsp; ISO 27001 &nbsp;·&nbsp; ISO 9001</p>
+  </div>
+</div>
+
+<!-- 3 STEPS -->
+<div class="steps-section">
+  <div class="steps-inner">
+    <div class="section-header">
+      <h2 class="section-title">From setup to savings in 3 steps.</h2>
+      <p class="section-subtitle">Setup takes under 5 minutes and touches nothing in the existing infrastructure.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-tag">Connect</div>
+        <h3 class="step-title">Connect</h3>
+        <p class="step-body">Securely link your AWS billing metadata via a read-only IAM role in under 5 minutes.</p>
+        <div class="step-footnote">Read-only access only. No changes to your AWS environment.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-tag">Review</div>
+        <h3 class="step-title">Review</h3>
+        <p class="step-body">Access your automated savings review and spend forecast in our portal: a personalised view of what you'll save and what your AWS will cost going forward.</p>
+        <div class="step-footnote">Free review, personalised to your actual usage and commitment profile.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-tag">Save</div>
+        <h3 class="step-title">Save</h3>
+        <p class="step-body">We implement a sophisticated mix of laddered Savings Plans, Convertible RIs, and marketplace arbitrage to secure deep discounts while you focus on your business.</p>
+        <div class="step-footnote">We do the work. You keep the flexibility, and the forecast stays accurate.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT SPLIT -->
+<div class="products-section">
+  <div class="products-inner">
+    <div class="section-header">
+      <h2 class="section-title">Two products. One approach.</h2>
+      <p class="section-subtitle">Both give you accurate spend forecasting and deep AWS savings. The difference is who they're built for.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-tag">Enterprise</div>
+        <h3 class="product-name">Automate</h3>
+        <p class="product-for">For enterprise organisations</p>
+        <p class="product-body">Guaranteed 3-year AWS discounts with full technical flexibility. Precise spend forecasting so finance teams always know what's coming. Our fee comes from your savings.</p>
+        <div class="product-bullets">
+          <div class="product-bullet"><div class="product-bullet-dot"></div><span>Up to 45% reduction in AWS spend</span></div>
+          <div class="product-bullet"><div class="product-bullet-dot"></div><span>Accurate monthly and quarterly spend forecasts</span></div>
+          <div class="product-bullet"><div class="product-bullet-dot"></div><span>No lock-in to fixed usage or spend patterns</span></div>
+          <div class="product-bullet"><div class="product-bullet-dot"></div><span>Zero engineering involvement required</span></div>
+        </div>
+        <button class="btn-primary">Learn about Automate</button>
+      </div>
+      <div class="product-card">
+        <div class="product-tag">UK Public Sector</div>
+        <h3 class="product-name">Accelerate</h3>
+        <p class="product-for">For UK public sector organisations</p>
+        <p class="product-body">A 1-year perfect discount with no risk of under or overspending, no usage commitments, and no service fee. Built specifically for public sector procurement and reporting requirements.</p>
+        <div class="product-bullets">
+          <div class="product-bullet"><div class="product-bullet-dot"></div><span>Maximum savings with no service fee</span></div>
+          <div class="product-bullet"><div class="product-bullet-dot"></div><span>Spend forecasting aligned to public sector budgeting cycles</span></div>
+          <div class="product-bullet"><div class="product-bullet-dot"></div><span>No commitment to fixed usage or spend</span></div>
+          <div class="product-bullet"><div class="product-bullet-dot"></div><span>Designed for public sector procurement routes</span></div>
+        </div>
+        <button class="btn-primary">Learn about Accelerate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<div class="security-section">
+  <div class="security-inner">
+    <div>
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:14px;">Security &amp; Access</p>
+      <h2 class="section-title" style="text-align:left; margin-bottom:16px;">Your data stays yours. Always.</h2>
+      <p style="font-size:15px; color:var(--mid); line-height:1.7; margin-bottom:32px; max-width:440px;">We only ever access cost and usage metadata. Never applications, infrastructure, or internal data.</p>
+      <div class="security-certs">
+        <div class="security-cert">AWS Partner</div>
+        <div class="security-cert">ISO 27001</div>
+        <div class="security-cert">ISO 9001</div>
+        <div class="security-cert">ISO 14001</div>
+      </div>
+    </div>
+    <div class="security-grid">
+      <div class="security-card">
+        <p class="security-card-title">Read-only billing access</p>
+        <p class="security-card-body">We connect via a read-only IAM role scoped to cost and usage data only. No access to your workloads, applications, or internal systems.</p>
+      </div>
+      <div class="security-card">
+        <p class="security-card-title">No impact on engineering</p>
+        <p class="security-card-body">We work entirely within the billing layer. Codebases, deployments, and day-to-day engineering are completely unaffected.</p>
+      </div>
+      <div class="security-card">
+        <p class="security-card-title">No change to your invoicing</p>
+        <p class="security-card-body">Your AWS billing relationship stays exactly as it is. We optimise within your existing account structure.</p>
+      </div>
+      <div class="security-card">
+        <p class="security-card-title">You stay in control</p>
+        <p class="security-card-body">You can revoke our access at any time. Our access is the minimum necessary to do the job, and nothing more.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHOOSE YOUR PATH -->
+<div class="path-section">
+  <div class="path-inner">
+    <div class="section-header">
+      <h2 class="section-title">Choose your path.</h2>
+      <p class="section-subtitle">What matters most to your organisation right now?</p>
+    </div>
+    <div class="path-grid">
+      <div class="path-card">
+        <div class="path-icon">
+          <svg class="icon-lg" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        </div>
+        <h3 class="path-title">Forecast with confidence</h3>
+        <p class="path-body">Get accurate, automated AWS spend forecasting so finance teams can plan, report, and present to the board with certainty.</p>
+        <p class="path-link">See the forecasting product →</p>
+      </div>
+      <div class="path-card">
+        <div class="path-icon">
+          <svg class="icon-lg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="path-title">Reduce your AWS bill</h3>
+        <p class="path-body">Cut AWS costs by up to 45%. The fee comes from what you save.</p>
+        <p class="path-link">Get a savings estimate →</p>
+      </div>
+      <div class="path-card">
+        <div class="path-icon">
+          <svg class="icon-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 class="path-title">Free your engineers</h3>
+        <p class="path-body">Hand off RI and Savings Plan management entirely. Your team focuses on building, not forecasting or fielding finance questions.</p>
+        <p class="path-link">See how it works →</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY -->
+<div class="cs-section">
+  <div class="cs-inner">
+    <div>
+      <p class="cs-eyebrow">Customer Story</p>
+      <h2 class="cs-headline">How SnapLogic achieved 45% cloud savings on auto-pilot.</h2>
+      <div class="cs-bullets">
+        <div class="cs-bullet">
+          <span class="cs-bullet-label">Savings outcome</span>
+          <span class="cs-bullet-value">45% reduction in total AWS spend.</span>
+        </div>
+        <div class="cs-bullet">
+          <span class="cs-bullet-label">Engineering effort</span>
+          <span class="cs-bullet-value">Zero engineering hours. No disruption to existing deployments.</span>
+        </div>
+        <div class="cs-bullet">
+          <span class="cs-bullet-label">Flexibility</span>
+          <span class="cs-bullet-value">100% ability to adapt cloud usage as the business scales.</span>
+        </div>
+      </div>
+      <div class="cs-quote">
+        "Strategic Blue is an integral FinOps partner for SnapLogic as they play a significant role in our overall AWS cost strategy."
+        <p class="cs-quote-attr">Jack Tang, SnapLogic</p>
+      </div>
+      <button class="btn-outline">
+        Read the 2-minute case study
+        <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div>
+      <div class="img-placeholder" style="height:380px;">
+        <svg class="icon-lg" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <span>SnapLogic brand image or savings chart</span>
+        <span class="sub">Suggested: before/after AWS spend graph or portal savings view</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATOR -->
+<div class="calc-section">
+  <div class="calc-inner">
+    <div class="section-header" style="margin-bottom:0;">
+      <h2 class="section-title">See what you could save.</h2>
+      <p class="section-subtitle">Enter your monthly AWS spend to get an indicative savings estimate based on typical outcomes for similar organisations.</p>
+    </div>
+    <div class="calc-box">
+      <div class="calc-fields">
+        <div class="calc-field">Monthly AWS spend</div>
+        <div class="calc-field">Industry / sector</div>
+        <div class="calc-field">Work email</div>
+      </div>
+      <button class="calc-submit">Calculate my savings →</button>
+      <p class="calc-microcopy">Takes under 2 minutes. No commitment required.</p>
+      <div class="calc-output">
+        Output area: representative savings estimate displayed here on submission.
+      </div>
+      <div class="calc-next-steps">
+        <p class="calc-next-label">What happens next</p>
+        <div class="calc-steps-row">
+          <div class="calc-step">
+            <div class="calc-step-num">1</div>
+            <div class="calc-step-title">We review your estimate</div>
+            A specialist reviews your inputs and prepares a more detailed savings and forecast summary.
+          </div>
+          <div class="calc-step">
+            <div class="calc-step-num">2</div>
+            <div class="calc-step-title">You get a personalised report</div>
+            We send a 1-page savings and forecast summary for you to review at your own pace.
+          </div>
+          <div class="calc-step">
+            <div class="calc-step-num">3</div>
+            <div class="calc-step-title">Optional: book a call</div>
+            If the numbers make sense, you can schedule a working session with one of our FinOps specialists.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESOURCES -->
+<div class="resources-section">
+  <div class="resources-inner">
+    <div class="section-header">
+      <h2 class="section-title">The brighter way to buy cloud.</h2>
+      <p class="section-subtitle">Guides and tools for teams who take cloud spend seriously.</p>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-img img-placeholder">
+          <svg class="icon-lg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span>Article thumbnail</span>
+        </div>
+        <div class="resource-body">
+          <p class="resource-tag">Guide</p>
+          <p class="resource-title">How to choose a rate optimisation tool for AWS</p>
+          <p class="resource-link">Read →</p>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-img img-placeholder">
+          <svg class="icon-lg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span>Article thumbnail</span>
+        </div>
+        <div class="resource-body">
+          <p class="resource-tag">Playbook</p>
+          <p class="resource-title">FinOps board pack: how to present cloud savings to leadership</p>
+          <p class="resource-link">Download →</p>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-img img-placeholder">
+          <svg class="icon-lg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span>Article thumbnail</span>
+        </div>
+        <div class="resource-body">
+          <p class="resource-tag">Article</p>
+          <p class="resource-title">Understanding AWS commitments: RIs, Savings Plans, and when to use each</p>
+          <p class="resource-link">Read →</p>
+        </div>
+      </div>
+      <div class="lead-magnet">
+        <div>
+          <p class="lead-title">Get the AWS Savings Checklist</p>
+          <p class="lead-body">A practical checklist for FinOps teams, CFOs, and procurement leads.</p>
+        </div>
+        <div>
+          <div class="lead-form">
+            <div class="lead-input">Work email</div>
+            <button class="lead-btn">Send me the checklist →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="nav-logo">Strategic Blue</div>
+    <p class="footer-note">© 2026 Strategic Blue. All Rights Reserved. · WeWork, 2 Eastbourne Terrace, London W2 6LG</p>
+    <div class="footer-certs">
+      <div class="cert-slot">AWS Partner</div>
+      <div class="cert-slot">ISO 27001</div>
+      <div class="cert-slot">ISO 9001</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
