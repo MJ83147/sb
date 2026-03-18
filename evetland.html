@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWS London Summit 2026 | Strategic Blue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sb-primary: #3010ef;
+    --sb-primary-dark: #2509c4;
+    --sb-lavender: #b5c2f6;
+    --sb-blue-mid: #90a9f8;
+    --sb-cyan: #4ec7ef;
+    --sb-yellow: #febc03;
+    --sb-orange: #fc8f00;
+    --sb-cream: #fdf7e4;
+    --sb-black: #000000;
+    --sb-heading: #0a0a0a;
+    --sb-body: #6b6b6b;
+    --sb-body-dark: #444444;
+    --sb-light-bg: #fafafa;
+    --sb-border: #ebebeb;
+    --sb-white: #ffffff;
+    --font-main: 'DM Sans', -apple-system, sans-serif;
+    --max-width: 1080px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-main);
+    color: var(--sb-body);
+    background: var(--sb-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV BAR ── */
+  .nav-bar {
+    background: var(--sb-white);
+    border-bottom: 1px solid var(--sb-border);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--sb-black);
+  }
+  .nav-logo span {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--sb-black);
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--sb-primary);
+    color: var(--sb-white);
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-main);
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--sb-primary-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--sb-white);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 80%;
+    height: 120%;
+    background: radial-gradient(ellipse at center, rgba(181,194,246,0.25) 0%, rgba(78,199,239,0.08) 40%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 80px 32px 72px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 56px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--sb-body-dark);
+    margin-bottom: 20px;
+    background: rgba(181,194,246,0.2);
+    padding: 7px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.2px;
+  }
+  .hero-eyebrow svg { flex-shrink: 0; color: var(--sb-blue-mid); }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--sb-heading);
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--sb-body);
+    margin-bottom: 36px;
+    max-width: 500px;
+  }
+  .hero-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+  .hero-detail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--sb-body-dark);
+    font-weight: 500;
+  }
+  .hero-detail svg { flex-shrink: 0; color: #999; }
+
+  /* ── REGISTRATION FORM CARD ── */
+  .form-card {
+    background: var(--sb-white);
+    border-radius: 12px;
+    padding: 36px 32px;
+    border: 1px solid var(--sb-border);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  }
+  .form-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--sb-heading);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .form-card .form-sub {
+    font-size: 13px;
+    color: var(--sb-body);
+    margin-bottom: 24px;
+  }
+  .form-field {
+    margin-bottom: 16px;
+  }
+  .form-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sb-heading);
+    margin-bottom: 6px;
+  }
+  .form-field input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--sb-border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: var(--font-main);
+    color: var(--sb-heading);
+    transition: border-color 0.2s;
+    background: var(--sb-light-bg);
+  }
+  .form-field input:focus {
+    outline: none;
+    border-color: var(--sb-lavender);
+    background: var(--sb-white);
+  }
+  .form-submit {
+    width: 100%;
+    padding: 13px;
+    background: var(--sb-primary);
+    color: var(--sb-white);
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-main);
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--sb-primary-dark); }
+  .form-note {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+  .form-note a { color: #888; }
+
+  /* ── SECTIONS ── */
+  .section-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .section-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #aaa;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--sb-heading);
+    letter-spacing: -1px;
+    margin-bottom: 48px;
+    line-height: 1.15;
+  }
+
+  /* ── WHAT TO EXPECT ── */
+  .expect-section {
+    padding: 80px 0;
+    background: var(--sb-white);
+  }
+  .expect-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .expect-card {
+    background: var(--sb-light-bg);
+    border-radius: 10px;
+    padding: 32px 28px;
+    border: 1px solid var(--sb-border);
+  }
+  .expect-icon {
+    width: 46px;
+    height: 46px;
+    background: rgba(181,194,246,0.25);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .expect-icon svg { color: var(--sb-heading); }
+  .expect-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--sb-heading);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  .expect-card p {
+    font-size: 14px;
+    color: var(--sb-body);
+    line-height: 1.7;
+  }
+
+  /* ── GIVEAWAY ── */
+  .giveaway-section {
+    padding: 80px 0;
+    background: var(--sb-light-bg);
+    border-top: 1px solid var(--sb-border);
+    border-bottom: 1px solid var(--sb-border);
+  }
+  .giveaway-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .giveaway-text h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--sb-heading);
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .giveaway-text p {
+    font-size: 16px;
+    color: var(--sb-body);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .prize-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .prize-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--sb-white);
+    padding: 18px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--sb-border);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--sb-heading);
+  }
+  .prize-check {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(254,188,3,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .prize-check svg { color: var(--sb-orange); }
+  .giveaway-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .giveaway-img {
+    background: var(--sb-white);
+    border: 1px solid var(--sb-border);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+  }
+  .giveaway-img .placeholder-img {
+    width: 100%;
+    height: 100%;
+    background: var(--sb-light-bg);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+    padding: 12px;
+  }
+
+  /* ── TRUST LOGOS ── */
+  .trust-section {
+    padding: 48px 0;
+    background: var(--sb-white);
+    border-bottom: 1px solid var(--sb-border);
+  }
+  .trust-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #bbb;
+    margin-bottom: 28px;
+  }
+  .trust-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .trust-logo {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    font-size: 14px;
+    color: #bbb;
+    font-weight: 600;
+    white-space: nowrap;
+    letter-spacing: -0.2px;
+  }
+
+  /* ── SOLUTIONS ── */
+  .solutions-section {
+    padding: 80px 0;
+    background: var(--sb-white);
+    position: relative;
+    overflow: hidden;
+  }
+  .solutions-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20%;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(181,194,246,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .solution-card {
+    border: 1px solid var(--sb-border);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    background: var(--sb-white);
+    transition: box-shadow 0.2s;
+  }
+  .solution-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  }
+  .solution-card-img {
+    width: 100%;
+    height: 160px;
+    background: var(--sb-light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #bbb;
+  }
+  .solution-card-body {
+    padding: 24px;
+  }
+  .solution-card-body h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--sb-heading);
+    margin-bottom: 10px;
+    letter-spacing: -0.2px;
+  }
+  .solution-card-body p {
+    font-size: 13px;
+    color: var(--sb-body);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .card-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sb-heading);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ── DIRECTIONS ── */
+  .directions-section {
+    padding: 80px 0;
+    background: var(--sb-light-bg);
+    border-top: 1px solid var(--sb-border);
+  }
+  .directions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .direction-card {
+    background: var(--sb-white);
+    border: 1px solid var(--sb-border);
+    border-radius: 10px;
+    padding: 32px;
+  }
+  .direction-card h4 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--sb-heading);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .direction-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(78,199,239,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .direction-icon svg { color: var(--sb-heading); }
+  .direction-card .near {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 16px;
+  }
+  .direction-card p {
+    font-size: 14px;
+    color: var(--sb-body);
+    line-height: 1.8;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    padding: 72px 0;
+    text-align: center;
+    background: var(--sb-white);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: 20%;
+    width: 60%;
+    height: 160%;
+    background: radial-gradient(ellipse at center, rgba(181,194,246,0.2) 0%, rgba(78,199,239,0.06) 40%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-banner .section-inner { position: relative; z-index: 1; }
+  .cta-banner h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--sb-heading);
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .cta-banner p {
+    font-size: 16px;
+    color: var(--sb-body);
+    margin-bottom: 32px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 32px 0;
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+    background: var(--sb-white);
+    border-top: 1px solid var(--sb-border);
+  }
+  .footer a {
+    color: var(--sb-heading);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      padding: 48px 24px;
+    }
+    .hero h1 { font-size: 34px; }
+    .expect-grid { grid-template-columns: 1fr; }
+    .giveaway-layout { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr; }
+    .directions-grid { grid-template-columns: 1fr; }
+    .section-inner { padding: 0 24px; }
+    .nav-inner { padding: 0 24px; }
+    .form-card { margin-top: 8px; }
+    .section-title { font-size: 28px; }
+    .giveaway-text h2 { font-size: 28px; }
+  }
+
+  .annotation {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--sb-heading);
+    color: rgba(255,255,255,0.8);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="https://strategic-blue.com" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect width="28" height="28" rx="6" fill="#3010ef"/>
+        <path d="M8 18.5C8 18.5 10 14 14 14C18 14 20 18.5 20 18.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="14" cy="10" r="2.5" fill="white"/>
+      </svg>
+      <span>Strategic Blue</span>
+    </a>
+    <a href="#register" class="btn-primary">Register Now
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO + FORM -->
+<section class="hero" id="register">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 1v3M10 1v3M1 6h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        AWS London Summit 2026
+      </p>
+      <h1>Join Strategic Blue for FinOps, Food &amp; Drinks</h1>
+      <p class="hero-sub">Taking on the AWS London Summit on April 22nd? Take a well-earned break at Strategic Blue's quiet oasis just next to the craziness of ExCeL. AWS staff welcome too!</p>
+      <div class="hero-details">
+        <div class="hero-detail">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 1v3M11 1v3M2 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          April 22, 2026
+        </div>
+        <div class="hero-detail">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          3:30 PM &#8211; 7:00 PM
+        </div>
+        <div class="hero-detail">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C5.2 1.5 3 3.7 3 6.5c0 3.75 5 8 5 8s5-4.25 5-8c0-2.8-2.2-5-5-5z" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="6.5" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+          Novotel, King George Room
+        </div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h3>Register to attend</h3>
+      <p class="form-sub">Secure your spot. It only takes 30 seconds.</p>
+      <div class="form-field">
+        <label>First name *</label>
+        <input type="text" placeholder="Jane">
+      </div>
+      <div class="form-field">
+        <label>Last name *</label>
+        <input type="text" placeholder="Smith">
+      </div>
+      <div class="form-field">
+        <label>Email address *</label>
+        <input type="email" placeholder="jane@company.com">
+      </div>
+      <button class="form-submit">Register Now</button>
+      <p class="form-note">Protected by reCAPTCHA. Google <a href="#">Privacy Policy</a> and <a href="#">Terms</a> apply.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="expect-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">What to expect</p>
+    <h2 class="section-title">Chat with our FinOps experts</h2>
+    <div class="expect-grid">
+      <div class="expect-card">
+        <div class="expect-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2v4M11 16v4M2 11h4M16 11h4M4.93 4.93l2.83 2.83M14.24 14.24l2.83 2.83M4.93 17.07l2.83-2.83M14.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Cloud cost forecasting</h4>
+        <p>Talk to our team about cloud cost forecasting and budget management strategies that give you clarity and control.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h16M9 9v10" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h4>Cost allocation best practice</h4>
+        <p>Learn how to structure cost allocation for maximum visibility across your organisation.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 17l4-6 3 4 2-3 3 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="3" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h4>Commitment optimisation</h4>
+        <p>Discover cost savings through optimizing your commitment management approach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVEAWAY -->
+<section class="giveaway-section">
+  <div class="section-inner">
+    <div class="giveaway-layout">
+      <div class="giveaway-text">
+        <p class="section-eyebrow">Annual giveaway</p>
+        <h2>Stop by to enter our prize draw</h2>
+        <p>Visit our stand and register for a chance to win one of this year's prizes.</p>
+        <ul class="prize-list">
+          <li class="prize-item">
+            <div class="prize-check">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="8" width="14" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 8V4M6 4c0 0 0-2 3-2s3 2 3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 8v8M2 11h14" stroke="currentColor" stroke-width="1.5"/></svg>
+            </div>
+            LEGO® Concorde
+          </li>
+          <li class="prize-item">
+            <div class="prize-check">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 12a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="6.5" cy="12" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="11.5" cy="12" r="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 10.5V7M11.5 10.5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            BOSE Bluetooth Noise-Cancelling Earbuds
+          </li>
+        </ul>
+      </div>
+      <div class="giveaway-images">
+        <div class="giveaway-img">
+          <div class="placeholder-img">LEGO® Concorde<br><span style="font-size:11px;opacity:0.6">[product image]</span></div>
+        </div>
+        <div class="giveaway-img">
+          <div class="placeholder-img">BOSE Earbuds<br><span style="font-size:11px;opacity:0.6">[product image]</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED BY -->
+<section class="trust-section">
+  <div class="section-inner">
+    <p class="trust-label">Trusted by digital innovators, since 2010</p>
+    <div class="trust-logos">
+      <div class="trust-logo">Satchel</div>
+      <div class="trust-logo">UCSD</div>
+      <div class="trust-logo">Form3</div>
+      <div class="trust-logo">Verato</div>
+      <div class="trust-logo">Dojo</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="solutions-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">How we help</p>
+    <h2 class="section-title">Learn more about what we do</h2>
+    <div class="solutions-grid">
+      <a href="https://strategic-blue.com/automate-business" class="solution-card">
+        <div class="solution-card-img">[Automate graphic]</div>
+        <div class="solution-card-body">
+          <h4>Automate for Enterprise</h4>
+          <p>Cut costs by up to 40%, not flexibility, and pay from your savings. Our Automate service plan guarantees 3-year AWS discounts with full technical flexibility.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </a>
+      <a href="https://strategic-blue.com/accelerate" class="solution-card">
+        <div class="solution-card-img">[Accelerate graphic]</div>
+        <div class="solution-card-body">
+          <h4>Accelerate for Public Sector</h4>
+          <p>Save more with no fees and invest in what's next. Built for UK Public Sector organisations, with cloud financial management and AWS resale at no service fee.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </a>
+      <a href="https://strategic-blue.com/calculate-your-savings" class="solution-card">
+        <div class="solution-card-img">[Calculator graphic]</div>
+        <div class="solution-card-body">
+          <h4>Calculate your savings</h4>
+          <p>Our centralised approach maximises savings and avoids lock-in. Try our free Savings Review to see how it can benefit you.</p>
+          <span class="card-link">Learn more &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTIONS -->
+<section class="directions-section">
+  <div class="section-inner">
+    <p class="section-eyebrow">How to find us</p>
+    <h2 class="section-title">Directions to the venue</h2>
+    <div class="directions-grid">
+      <div class="direction-card">
+        <h4>
+          <div class="direction-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14l4-4M6 14h-4v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2l-4 4M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          From the Western Entrance
+        </h4>
+        <p class="near">Near Customs House Elizabeth line, The Fox Bar, the dock</p>
+        <p>Face away from ExCeL and walk down the steps. The Sunborn yacht will be on your left, the Novotel straight ahead. Walk to the right of the building to the entrance, take the lift or stairs to the first floor. Walk left at reception and turn to face the bar. The King George room is to the left of the bar.</p>
+      </div>
+      <div class="direction-card">
+        <h4>
+          <div class="direction-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 14l4-4M6 14h-4v-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2l-4 4M10 2h4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          From the Eastern Entrance
+        </h4>
+        <p class="near">Near Aloft hotel and bar, Prince Regent DLR station</p>
+        <p>Enter ExCeL and walk the length of the building. Once you exit at the Western entrance, walk down the steps. The Sunborn yacht will be on your left, the Novotel straight ahead. Walk to the right of the building to the entrance, take the lift or stairs to the first floor. Walk left at reception, face the bar. The King George room is to the left of the bar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="section-inner">
+    <h2>Ready to join us?</h2>
+    <p>Register now to secure your spot at the Novotel on April 22nd.</p>
+    <a href="#register" class="btn-primary" style="font-size:15px;padding:14px 32px;">See what you could save
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="section-inner">
+    <p>Copyright &copy; Strategic Blue 2026 &middot; Want to learn more? Visit <a href="https://strategic-blue.com">strategic-blue.com</a></p>
+  </div>
+</footer>
+
+<div class="annotation">DESIGN MOCKUP &middot; Not final build</div>
+
+</body>
+</html>
