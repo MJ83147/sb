@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWS Savings Estimate | Strategic Blue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sb-black: #0A0A0A;
+    --sb-indigo: #2A1FE5;
+    --sb-indigo-dark: #1F17B8;
+    --sb-text: #1A1A1A;
+    --sb-muted: #5A5A66;
+    --sb-line: #E5E5EA;
+    --sb-bg-soft: #F6F7FB;
+    --sb-bg-tint-start: #EDEFFE;
+    --sb-bg-tint-end: #E8F0FE;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--sb-text);
+    background: #FFFFFF;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Utility bar */
+  .utility-bar {
+    background: #F4F4F6;
+    padding: 8px 0;
+    font-size: 13px;
+  }
+  .utility-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .utility-bar-left { font-weight: 500; }
+  .utility-bar a {
+    color: var(--sb-text);
+    text-decoration: none;
+    margin-left: 24px;
+  }
+  .utility-bar a:hover { opacity: 0.7; }
+
+  /* Header */
+  .header {
+    padding: 18px 0;
+    background: #FFFFFF;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--sb-black);
+    text-decoration: none;
+  }
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .logo-mark .sq-black {
+    width: 16px;
+    height: 16px;
+    background: var(--sb-black);
+  }
+  .logo-mark .sq-white {
+    width: 8px;
+    height: 8px;
+    background: #FFFFFF;
+    margin-left: -10px;
+  }
+  .logo-mark .dot {
+    width: 16px;
+    height: 16px;
+    background: var(--sb-indigo);
+    border-radius: 50%;
+    margin-left: -2px;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav a {
+    color: var(--sb-text);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .nav a:hover { opacity: 0.7; }
+  .nav-cta {
+    display: flex;
+    gap: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary {
+    background: var(--sb-indigo);
+    color: #FFFFFF;
+  }
+  .btn-primary:hover { background: var(--sb-indigo-dark); }
+  .btn-secondary {
+    background: var(--sb-black);
+    color: #FFFFFF;
+  }
+  .btn-secondary:hover { background: #2A2A2A; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--sb-text);
+    border: 1.5px solid var(--sb-line);
+  }
+  .btn-ghost:hover { border-color: var(--sb-black); }
+  .btn-lg {
+    padding: 16px 32px;
+    font-size: 16px;
+  }
+  .btn-full {
+    width: 100%;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 64px 0 96px;
+    background:
+      radial-gradient(circle at 15% 30%, var(--sb-bg-tint-start) 0%, transparent 50%),
+      radial-gradient(circle at 85% 80%, var(--sb-bg-tint-end) 0%, transparent 50%),
+      #FFFFFF;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(42, 31, 229, 0.08);
+    color: var(--sb-indigo);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--sb-black);
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--sb-muted);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--sb-line);
+  }
+  .hero-meta-item {
+    flex: 1;
+  }
+  .hero-meta-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--sb-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hero-meta-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--sb-black);
+    line-height: 1.3;
+  }
+
+  /* Calculator */
+  .calculator {
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: 0 8px 40px rgba(10, 10, 10, 0.08);
+    border: 1px solid var(--sb-line);
+  }
+  .calc-header {
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--sb-line);
+  }
+  .calc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sb-indigo);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .calc-eyebrow::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--sb-indigo);
+    border-radius: 50%;
+  }
+  .calc-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--sb-black);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .calc-header p {
+    font-size: 14px;
+    color: var(--sb-muted);
+  }
+  .calc-field {
+    margin-bottom: 22px;
+  }
+  .calc-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sb-black);
+    margin-bottom: 8px;
+  }
+  .calc-hint {
+    font-size: 13px;
+    color: var(--sb-muted);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .calc-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--sb-text);
+    background: #FFFFFF;
+    border: 1.5px solid var(--sb-line);
+    border-radius: 10px;
+    transition: border-color 0.15s ease;
+  }
+  .calc-input:focus {
+    outline: none;
+    border-color: var(--sb-indigo);
+  }
+  .calc-input::placeholder {
+    color: #B5B5C2;
+    font-weight: 400;
+  }
+  .calc-input-prefix {
+    position: relative;
+  }
+  .calc-input-prefix::before {
+    content: '$';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--sb-muted);
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .calc-input-prefix .calc-input {
+    padding-left: 32px;
+  }
+  .calc-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .calc-option {
+    padding: 12px 8px;
+    text-align: center;
+    border: 1.5px solid var(--sb-line);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--sb-text);
+    cursor: pointer;
+    background: #FFFFFF;
+    transition: all 0.15s ease;
+  }
+  .calc-option:hover {
+    border-color: var(--sb-indigo);
+  }
+  .calc-option.selected {
+    border-color: var(--sb-indigo);
+    background: rgba(42, 31, 229, 0.06);
+    color: var(--sb-indigo);
+    font-weight: 600;
+  }
+  .calc-submit {
+    margin-top: 8px;
+  }
+  .calc-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--sb-line);
+    font-size: 12px;
+    color: var(--sb-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* Section base */
+  section {
+    padding: 96px 0;
+  }
+  .section-eyebrow {
+    display: inline-block;
+    color: var(--sb-indigo);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-header {
+    max-width: 800px;
+    margin: 0 auto 64px;
+    text-align: center;
+  }
+  .section-header h2 {
+    font-size: clamp(30px, 3.5vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--sb-black);
+    margin-bottom: 18px;
+  }
+  .section-header p {
+    font-size: 17px;
+    color: var(--sb-muted);
+    line-height: 1.6;
+  }
+
+  /* The context section (replaces bottleneck) */
+  .context {
+    background: var(--sb-bg-soft);
+  }
+  .context-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .context-card {
+    background: #FFFFFF;
+    border-radius: var(--radius);
+    padding: 40px;
+    border: 1px solid var(--sb-line);
+  }
+  .context-card-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sb-muted);
+    margin-bottom: 14px;
+  }
+  .context-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--sb-black);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .context-card p {
+    font-size: 15px;
+    color: var(--sb-muted);
+    line-height: 1.6;
+  }
+
+  /* What it does */
+  .whatitdoes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .what-card {
+    background: #FFFFFF;
+    border: 1px solid var(--sb-line);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+  }
+  .what-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(42, 31, 229, 0.08);
+    color: var(--sb-indigo);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .what-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--sb-black);
+    margin-bottom: 12px;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+  }
+  .what-card p {
+    font-size: 15px;
+    color: var(--sb-muted);
+    line-height: 1.55;
+  }
+
+  /* Methodology */
+  .methodology {
+    background: var(--sb-black);
+    color: #FFFFFF;
+  }
+  .methodology .section-eyebrow {
+    color: #8B82FF;
+  }
+  .methodology .section-header h2 {
+    color: #FFFFFF;
+  }
+  .methodology .section-header p {
+    color: #B5B5C2;
+  }
+  .methodology-content {
+    max-width: 880px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+  }
+  .methodology-content h3 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: #FFFFFF;
+    letter-spacing: -0.005em;
+  }
+  .methodology-content p {
+    font-size: 15px;
+    color: #B5B5C2;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .methodology-content p:last-child {
+    margin-bottom: 0;
+  }
+  .methodology-content strong {
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  /* Estimate vs Diagnostic */
+  .full-diagnostic {
+    background: var(--sb-bg-soft);
+  }
+  .diagnostic-compare {
+    background: #FFFFFF;
+    border-radius: var(--radius-lg);
+    max-width: 1080px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--sb-line);
+  }
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .compare-col {
+    padding: 48px;
+  }
+  .compare-col.right {
+    background: linear-gradient(135deg, rgba(42, 31, 229, 0.03) 0%, rgba(42, 31, 229, 0.06) 100%);
+    border-left: 1px solid var(--sb-line);
+  }
+  .compare-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .compare-tag.this {
+    background: #F0F0F4;
+    color: var(--sb-text);
+  }
+  .compare-tag.next {
+    background: var(--sb-indigo);
+    color: #FFFFFF;
+  }
+  .compare-col h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--sb-black);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .compare-col > p {
+    font-size: 15px;
+    color: var(--sb-muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .compare-list {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+  .compare-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--sb-text);
+    line-height: 1.5;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--sb-line);
+  }
+  .compare-col.right .compare-list li {
+    border-bottom-color: rgba(42, 31, 229, 0.1);
+  }
+  .compare-list li:last-child { border-bottom: none; }
+  .compare-list .check {
+    color: var(--sb-indigo);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .compare-list .dash {
+    color: #B5B5C2;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Proof */
+  .proof-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #FFFFFF;
+    border: 1px solid var(--sb-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .proof-visual {
+    background: linear-gradient(135deg, #1A1AC9 0%, #2A1FE5 100%);
+    padding: 56px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 380px;
+  }
+  .proof-stat-big {
+    font-size: 88px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .proof-stat-label {
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.85;
+    margin-top: 12px;
+  }
+  .proof-visual-footer {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+  .proof-content {
+    padding: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .proof-quote {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--sb-black);
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+  }
+  .proof-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .proof-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--sb-indigo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+  .proof-author-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--sb-black);
+  }
+  .proof-author-role {
+    font-size: 14px;
+    color: var(--sb-muted);
+  }
+
+  /* Final CTA */
+  .final-cta {
+    background:
+      radial-gradient(circle at 20% 50%, rgba(42, 31, 229, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(42, 31, 229, 0.05) 0%, transparent 50%),
+      #FFFFFF;
+    text-align: center;
+  }
+  .final-cta h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--sb-black);
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+    line-height: 1.15;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .final-cta p {
+    font-size: 18px;
+    color: var(--sb-muted);
+    margin-bottom: 36px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .final-cta-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--sb-black);
+    color: #FFFFFF;
+    padding: 64px 0 32px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .footer-brand .logo {
+    color: #FFFFFF;
+    margin-bottom: 16px;
+  }
+  .footer-tagline {
+    font-size: 14px;
+    color: #8A8A98;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+  .footer-col h4 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 18px;
+  }
+  .footer-col a {
+    display: block;
+    color: #8A8A98;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .footer-col a:hover { color: #FFFFFF; }
+  .footer-bottom {
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #8A8A98;
+  }
+
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .hero { padding: 48px 0 72px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-meta { flex-direction: column; gap: 20px; }
+    .calculator { padding: 28px; }
+    section { padding: 72px 0; }
+    .context-grid { grid-template-columns: 1fr; }
+    .whatitdoes-grid { grid-template-columns: 1fr; }
+    .methodology-content { padding: 32px 28px; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .compare-col { padding: 32px 28px; }
+    .compare-col.right { border-left: none; border-top: 1px solid var(--sb-line); }
+    .proof-card { grid-template-columns: 1fr; }
+    .proof-visual, .proof-content { padding: 36px 28px; }
+    .proof-stat-big { font-size: 64px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Utility bar -->
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-bar-left">AWS Savings Estimate</div>
+    <div>
+      <a href="#">Contact Us</a>
+      <a href="#">Portal</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <span class="sq-black"></span>
+        <span class="sq-white"></span>
+        <span class="dot"></span>
+      </span>
+      Strategic Blue
+    </a>
+    <nav class="nav">
+      <a href="#">Solution</a>
+      <a href="#">Who it's for</a>
+      <a href="#">How it works</a>
+      <a href="#">Resources</a>
+      <a href="#">About</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-secondary">Book a call</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero with calculator -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="hero-eyebrow">For Finance &amp; FinOps Teams</span>
+        <h1>Estimate your AWS rate optimization savings. Without a CUR.</h1>
+        <p class="hero-sub">A pared-down version of our full diagnostic, built for FinOps and finance teams who want a credible commitment savings range before pulling in engineering for a CUR export.</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="hero-meta-label">Inputs</div>
+            <div class="hero-meta-value">3 questions</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-label">Output</div>
+            <div class="hero-meta-value">Annual savings range</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-label">Access needed</div>
+            <div class="hero-meta-value">None</div>
+          </div>
+        </div>
+      </div>
+      <div class="calculator">
+        <div class="calc-header">
+          <span class="calc-eyebrow">Quick Estimate</span>
+          <h2>Estimate your savings</h2>
+          <p>Three inputs. No AWS account access. No CUR.</p>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label">[Placeholder Field 1: e.g. Monthly AWS spend]</label>
+          <p class="calc-hint">From the AWS invoice. Round figure is fine.</p>
+          <div class="calc-input-prefix">
+            <input type="text" class="calc-input" placeholder="e.g. 50,000">
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label">[Placeholder Field 2: e.g. Workload profile]</label>
+          <p class="calc-hint">Best estimate of your compute-heavy vs storage-heavy mix.</p>
+          <div class="calc-options">
+            <div class="calc-option selected">[Option A]</div>
+            <div class="calc-option">[Option B]</div>
+            <div class="calc-option">[Option C]</div>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label">[Placeholder Field 3: e.g. Current commitment coverage]</label>
+          <p class="calc-hint">How much of your usage is covered by RIs or SPs today.</p>
+          <div class="calc-options">
+            <div class="calc-option">Mostly on-demand</div>
+            <div class="calc-option selected">Partial coverage</div>
+            <div class="calc-option">Heavy coverage</div>
+          </div>
+        </div>
+
+        <a href="#" class="btn btn-primary btn-lg btn-full calc-submit">Show savings estimate</a>
+
+        <div class="calc-footer">
+          Range output, calibrated against Strategic Blue customer commitment savings rates since 2010.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Context (was bottleneck) -->
+<section class="context">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Why a lighter version</span>
+      <h2>Most rate optimization tools start with a CUR export. This one doesn't.</h2>
+      <p>The full diagnostic gives you a precise commitment savings projection from your CUR. The lighter estimate gives you a credible range before you ask engineering to run the export.</p>
+    </div>
+    <div class="context-grid">
+      <div class="context-card">
+        <div class="context-card-label">Full diagnostic</div>
+        <h3>CUR export, modelled against your actual usage, SP and RI mix.</h3>
+        <p>Precise. Requires a CUR export and read-only IAM access, which usually means a ticket with engineering. Worth doing once you're ready to act on the number.</p>
+      </div>
+      <div class="context-card">
+        <div class="context-card-label">Quick estimate</div>
+        <h3>Three inputs, calibrated against our customer benchmarks.</h3>
+        <p>A savings range you can run yourself. Useful for sizing the opportunity, briefing your CFO, or deciding whether the full diagnostic is worth a proper kickoff.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What it does -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">What the estimate covers</span>
+      <h2>Rate optimization savings, not workload rightsizing.</h2>
+      <p>The estimate models the savings available from better commitment coverage and utilization. It doesn't cover rightsizing, architecture changes, or service-level decisions.</p>
+    </div>
+    <div class="whatitdoes-grid">
+      <div class="what-card">
+        <div class="what-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <h3>Commitment savings rate</h3>
+        <p>Modelled improvement in your commitment savings rate against your current on-demand vs RI/SP mix.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 14l4-4 4 4 5-5"></path></svg>
+        </div>
+        <h3>Coverage and utilization</h3>
+        <p>Indicative coverage and utilization rates Strategic Blue typically delivers on workloads similar to yours.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h3>Annual savings range</h3>
+        <p>Estimated annual savings as a range, with the low and high anchored on customer outcomes since 2010.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Methodology -->
+<section class="methodology">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Methodology</span>
+      <h2>How the range is built.</h2>
+      <p>No black box. The inputs map to a benchmark dataset, not a guess.</p>
+    </div>
+    <div class="methodology-content">
+      <h3>The benchmark</h3>
+      <p>Strategic Blue has managed AWS commitment portfolios for customers since 2010. The estimate uses anonymised commitment savings rate, coverage, and utilization data from that customer base, segmented by workload profile and current commitment posture.</p>
+
+      <h3>The calculation</h3>
+      <p>Your three inputs (<strong>monthly AWS spend, workload profile, current coverage</strong>) map you to a peer group. The output range is the 25th to 75th percentile of annual savings achieved by Strategic Blue customers in that peer group, applied to your spend.</p>
+
+      <h3>What it doesn't account for</h3>
+      <p>The estimate assumes a relatively stable spend pattern over the next 12 months. It doesn't model rightsizing savings, architecture changes, spot pricing, or service-level cost cuts. The full diagnostic accounts for these by working off your CUR directly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Estimate vs Diagnostic -->
+<section class="full-diagnostic">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">From estimate to diagnostic</span>
+      <h2>When you're ready for a precise number.</h2>
+      <p>The estimate is enough to size the opportunity. The diagnostic is what you take to your CFO or your board.</p>
+    </div>
+    <div class="diagnostic-compare">
+      <div class="compare-grid">
+        <div class="compare-col">
+          <span class="compare-tag this">You are here</span>
+          <h3>Quick estimate</h3>
+          <p>A savings range from three inputs and the customer benchmark.</p>
+          <ul class="compare-list">
+            <li><span class="check">✓</span> Three inputs, under two minutes</li>
+            <li><span class="check">✓</span> No CUR, no IAM access</li>
+            <li><span class="check">✓</span> Output: annual savings range</li>
+            <li><span class="dash">–</span> Not specific to your workloads</li>
+            <li><span class="dash">–</span> Excludes rightsizing and architecture</li>
+          </ul>
+          <a href="#" class="btn btn-ghost">Run the estimate</a>
+        </div>
+        <div class="compare-col right">
+          <span class="compare-tag next">Next step</span>
+          <h3>Full diagnostic</h3>
+          <p>A precise commitment savings projection modelled from your CUR.</p>
+          <ul class="compare-list">
+            <li><span class="check">✓</span> CUR-based, workload-specific</li>
+            <li><span class="check">✓</span> SP and RI scenarios modelled</li>
+            <li><span class="check">✓</span> Coverage and utilization targets</li>
+            <li><span class="check">✓</span> Read-only IAM, no scripts</li>
+            <li><span class="check">✓</span> Free, zero obligation</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Book the full diagnostic</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Proof -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Customer benchmark</span>
+      <h2>The estimate sits on real customer outcomes.</h2>
+      <p>Calibrated against Strategic Blue customers running AWS rate optimization since 2010.</p>
+    </div>
+    <div class="proof-card">
+      <div class="proof-visual">
+        <div>
+          <div class="proof-stat-big">[X]%</div>
+          <div class="proof-stat-label">Median commitment savings rate, Strategic Blue customers</div>
+        </div>
+        <div class="proof-visual-footer">
+          [Placeholder: representative customer profile. e.g. AWS spend, workload type, coverage achieved, commitment savings rate, time to value. Replace with real example.]
+        </div>
+      </div>
+      <div class="proof-content">
+        <div class="proof-quote">"[Placeholder customer quote. Ideally from a FinOps lead, speaking to commitment savings rate, coverage, and the management overhead Strategic Blue handles.]"</div>
+        <div class="proof-author">
+          <div class="proof-avatar">[X]</div>
+          <div>
+            <div class="proof-author-name">[Customer Name]</div>
+            <div class="proof-author-role">[Title], [Company]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Three inputs. One range. No CUR required.</h2>
+    <p>Size the opportunity before you book the diagnostic. Useful even if you decide not to act on it.</p>
+    <div class="final-cta-buttons">
+      <a href="#" class="btn btn-primary btn-lg">Run the estimate</a>
+      <a href="#" class="btn btn-ghost btn-lg">Book a 15-min call</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-mark">
+            <span class="sq-black" style="background: #FFFFFF;"></span>
+            <span class="sq-white" style="background: var(--sb-black);"></span>
+            <span class="dot"></span>
+          </span>
+          Strategic Blue
+        </a>
+        <p class="footer-tagline">Cut AWS costs, not flexibility. Trusted by digital innovators since 2010.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Solution</h4>
+        <a href="#">For FinOps teams</a>
+        <a href="#">For finance</a>
+        <a href="#">How it works</a>
+        <a href="#">Full diagnostic</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Case studies</a>
+        <a href="#">FinOps insights</a>
+        <a href="#">Methodology</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Portal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© Strategic Blue. All rights reserved.</div>
+      <div><a href="#" style="color: #8A8A98; text-decoration: none;">Privacy</a> · <a href="#" style="color: #8A8A98; text-decoration: none;">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
